@@ -1,12 +1,19 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { v4 as uuid } from 'uuid';
+
+import { add as addTask } from '../app/features/tasks/taskSlice';
 
 
 // Functional Component
 const TaskForm = () => {
-    const [ task, setTask ] = useState({
+    const initialState = {
         title: '',
         description: ''
-    });
+    };
+
+    const [ task, setTask ] = useState( initialState );
+    const dispatch = useDispatch();
 
     const handleChange = e => {
         // console.log( `${ e.target.name }: ${ e.target.value }` );
@@ -18,7 +25,12 @@ const TaskForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log( 'Save:', task );
+
+        // Ejecuta la accion definida en el Reducer
+        dispatch( addTask({
+            ...task,
+            id: uuid()
+        }) );
     }
 
     return (

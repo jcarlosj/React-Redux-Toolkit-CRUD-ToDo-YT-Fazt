@@ -11,7 +11,7 @@ const TaskList = () => {
             {   tasks.length > 0 && <ul className="task-list">
                 {   tasks.map( task => ( 
                         <li className="task-list-item" key={ task.id }>
-                            <h3>{ task.name }</h3>
+                            <h3>{ task.title }</h3>
                             <p>{ task.description }</p>
                         </li>
                     )) 
