@@ -77,8 +77,8 @@ const TaskForm = () => {
                     ></textarea>
                 </div>
                 <div className="form-field">
-                    <button type="button" onClick={ () => navigate( '/' ) }>Cancel</button>
-                    <button type="submit">{ params?.id ? 'Edit' : 'Create' }</button>
+                    <button className="btn btn-cancel" type="button" onClick={ () => navigate( '/' ) }>Cancel</button>
+                    <button className="btn btn-create" type="submit">{ params?.id ? 'Edit' : 'Create' }</button>
                 </div>
             </form>
         </section>
