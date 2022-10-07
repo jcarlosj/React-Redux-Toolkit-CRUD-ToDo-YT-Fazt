@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
-import { add as addTask } from '../app/features/tasks/taskSlice';
+import { add as addTask, edit as editTask } from '../app/features/tasks/taskSlice';
 
 
 // Functional Component
@@ -32,17 +32,13 @@ const TaskForm = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if( params?.id ) {
-            console.log( 'Edita Tarea' );
-            
-            return;
-        }
-
-        // Ejecuta la accion definida en el Reducer
-        dispatch( addTask({
-            ...task,
-            id: uuid()
-        }) );
+        if( params?.id )
+            dispatch( editTask( task ) );
+        else
+            dispatch( addTask({
+                ...task,
+                id: uuid()
+            }) );
 
         navigate( '/' );
     }
