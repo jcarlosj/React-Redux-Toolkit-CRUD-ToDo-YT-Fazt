@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
 import { add as addTask } from '../app/features/tasks/taskSlice';
@@ -13,7 +14,10 @@ const TaskForm = () => {
     };
 
     const [ task, setTask ] = useState( initialState );
-    const dispatch = useDispatch();
+
+    const
+        dispatch = useDispatch(),
+        navigate = useNavigate();
 
     const handleChange = e => {
         // console.log( `${ e.target.name }: ${ e.target.value }` );
@@ -31,6 +35,8 @@ const TaskForm = () => {
             ...task,
             id: uuid()
         }) );
+
+        navigate( '/' );
     }
 
     return (
@@ -44,7 +50,8 @@ const TaskForm = () => {
                     <textarea name="description" placeholder="Description task" onChange={ handleChange }></textarea>
                 </div>
                 <div className="form-field">
-                    <button type="submit">Send</button>
+                    <button type="button" onClick={ () => navigate( '/' ) }>Cancel</button>
+                    <button type="submit">Create task</button>
                 </div>
             </form>
         </section>

@@ -1,6 +1,8 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import './App.css';
-import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
+import TaskForm from './components/TaskForm';
 
 
 // * Main Functional Component
@@ -8,8 +10,12 @@ function App() {
 	return (
 		<div className="container">
 			<h1 className="title">Todo<small className="title-small">Redux Toolkit</small></h1>
-			<TaskForm />
-			<TaskList />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={ <TaskList />} />
+					<Route path="/create-task" element={ <TaskForm /> } />
+				</Routes>
+			</BrowserRouter>
 		</div>
 	);
 }

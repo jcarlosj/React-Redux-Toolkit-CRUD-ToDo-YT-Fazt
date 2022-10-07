@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { remove as deleteTask } from '../app/features/tasks/taskSlice';
 
@@ -15,7 +16,9 @@ const TaskList = () => {
 
     return (
         <section className="section section__task-list">
-            <h2>Task List</h2>
+            <h2 className="title__component">Task List <small className="title-small__component">Total: { tasks.length }</small></h2>
+            <Link to="/create-task">Create task</Link>
+
             {   tasks.length > 0 && <ul className="task-list">
                 {   tasks.map( task => ( 
                         <li className="task-list-item" key={ task.id }>
